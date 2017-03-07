@@ -1032,6 +1032,27 @@ func listPayments(ctx *cli.Context) error {
 	return nil
 }
 
+var ListChainTxns = cli.Command{
+	Name:        "listchaintxns",
+	Usage:       "listchaintxns",
+	Description: "lists all the on-chain transactions",
+	Action:      listChainTxns,
+}
+
+func listChainTxns(ctx *cli.Context) error {
+	client, cleanup := getClient(ctx)
+	defer cleanup()
+
+	req := &lnrpc.GetTransactionsRequest{}
+	txns, err := client.GetTransactions(context.Background(), req)
+	if err != nil {
+		return err
+	}
+
+	printRespJson(txns)
+	return nil
+}
+
 var GetChanInfoCommand = cli.Command{
 	Name:  "getchaninfo",
 	Usage: "getchaninfo --chan_id=[8_byte_channel_id]",

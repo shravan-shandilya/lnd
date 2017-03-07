@@ -70,6 +70,7 @@ func main() {
 		ListInvoicesCommand,
 		ListChannelsCommand,
 		ListPaymentsCommand,
+		ListChainTxns,
 		DescribeGraphCommand,
 		GetChanInfoCommand,
 		GetNodeInfoCommand,
